@@ -1,9 +1,7 @@
 package com.company;
-import java.*;
+
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -21,21 +19,17 @@ public class Main {
         Random rd = new Random();
         int a[]=new int[names.size()];
         int x = 0;
-        ArrayList<String> newnames = new ArrayList<String>();
-        while(x<names.size()){
-            int i = rd.nextInt(names.size());
-            a[x] = i;
-            int n = 0;
-            for (int j = 0; j<a.length; j++){
-                if (a[j] != i){
-                    n++;
+        ArrayList<String> newnames = new ArrayList<>();
+        for(int i = 0;i<names.size();i++){
+            a[i]=rd.nextInt(names.size());
+            for(int j = 0; j<a.length;j++){
+                while(a[i]==a[j]&&i!=j){
+                    a[i]=rd.nextInt(names.size());
                 }
             }
-            if (n == a.length){
-                newnames.add(x,names.get(i));
-                x++;
-            }
-
+        }
+        for(int c=0;c<a.length;c++){
+           newnames.add(names.get(a[c]));
         }
         for(int b = 0; b< newnames.size(); b++){
             System.out.println(newnames.get(b));
